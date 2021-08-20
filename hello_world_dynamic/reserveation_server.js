@@ -1,7 +1,7 @@
 const path = require('path')
 const Mali = require('mali')
 
-const PROTO_PATH = path.resolve(__dirname, '../protos/helloworld.proto')
+const PROTO_PATH = path.resolve(__dirname, '../protos/reservation.proto')
 const HOSTPORT = '0.0.0.0:50051'
 
 /**
@@ -16,7 +16,7 @@ function sayHello (ctx) {
  * sample server port
  */
 function main () {
-  const app = new Mali(PROTO_PATH, 'Greeter')
+  const app = new Mali(PROTO_PATH, 'Reservation')
   app.use({ sayHello })
   app.start(HOSTPORT)
   console.log(`Greeter service running @ ${HOSTPORT}`)

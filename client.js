@@ -3,11 +3,11 @@ const Mali = require('Mali')
 const pl = require('@grpc/proto-loader')
 const grpc = require('@grpc/grpc-js')
 const mysql = require('mysql');
-const PROTO_PATH = path.resolve(__dirname, "./protos/helloworld.proto")
+const PROTO_PATH = path.resolve(__dirname, "./protos/reservation.proto")
 
 const pd = pl.loadSync(PROTO_PATH)
-const helloproto = grpc.loadPackageDefinition(pd).helloworld
-const client = new helloproto.Greeter("127.0.0.1:50051", grpc.credentials.createInsecure())
+const reservation = grpc.loadPackageDefinition(pd).reservation
+const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.createInsecure())
 
 var connection = mysql.createConnection({
     host: 'localhost',
