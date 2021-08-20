@@ -1,5 +1,6 @@
 const path = require('path')
 const Mali = require('mali')
+const MySql = require('mysql');
 
 const PROTO_PATH = path.resolve(__dirname, '../protos/reservation.proto')
 const HOSTPORT = '0.0.0.0:50051'
@@ -7,8 +8,29 @@ const HOSTPORT = '0.0.0.0:50051'
 /**
  * Implements the SayHello RPC method.
  */
+
+var connection = MySql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'P@ssw0rd',
+  database: 'yamamoto'
+});
+
+
 function sayHello (ctx) {
-  ctx.res = { reservationResponse: 'Hello ' + ctx.req.reservationId }
+  
+  //ctx.res = { reservationResponse: 'Hello ' + ctx.req.reservationId }
+
+  connection.query('SELECT * from pet;', function (err, rows, fields) {
+      if (err) { 
+          console.log('err: ' + err); 
+          ctx.res = { reservationResponse: '401 bad request' }
+      }else{
+          ctx.res = { reservationResponse: '201 created' }
+      }
+  });
+
 }
 
 /**

@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-
 package reservation;
 
 // The greeting service definition.
@@ -11,7 +10,11 @@ service Reservation {
 
 // The request message containing the user's name.
 message ReservationRequest {
-  string reservationId = 1;
+  string reservationId   = 1;
+  string reservationDate = 2;
+  string doctorId        = 3;
+  string clientId        = 4;
+  string reservationSlot = 5;
 }
 
 // The response message containing the greetings
