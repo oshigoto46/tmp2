@@ -1,1 +1,1 @@
-# this is for the interview pay.com
+# this is for the interview of pay.com
