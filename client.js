@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path')
 const pl = require('@grpc/proto-loader')
 const grpc = require('@grpc/grpc-js')
