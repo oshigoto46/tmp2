@@ -18,7 +18,7 @@ var connection = mysql.createConnection({
 });
 
 
-client.sayHello({ name: 'Hoge' }, (err, response) => {
+client.sayHello({ reservationId: 'reservationId 111' }, (err, response) => {
     connection.query('SELECT * from pet;', function (err, rows, fields) {
     if (err) { console.log('err: ' + err); }
 

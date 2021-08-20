@@ -11,10 +11,10 @@ service Reservation {
 
 // The request message containing the user's name.
 message ReservationRequest {
-  string name = 1;
+  string reservationId = 1;
 }
 
 // The response message containing the greetings
 message ReservationReply {
-  string message = 1;
+  string reservationResponse = 1;
 }

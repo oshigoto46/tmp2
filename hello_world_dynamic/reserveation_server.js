@@ -8,7 +8,7 @@ const HOSTPORT = '0.0.0.0:50051'
  * Implements the SayHello RPC method.
  */
 function sayHello (ctx) {
-  ctx.res = { message: 'Hello ' + ctx.req.name }
+  ctx.res = { reservationResponse: 'Hello ' + ctx.req.reservationId }
 }
 
 /**
