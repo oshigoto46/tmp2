@@ -3,9 +3,8 @@
 const path = require('path')
 const Mali = require('mali')
 const Datastore = require('./infrastructure/Datastore')
-
+const config = require('./config.js')
 const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto')
-const HOSTPORT = '0.0.0.0:50051'
 
 /**
  * Implements the SayHello RPC method.
@@ -41,8 +40,8 @@ function makeReseravtion (ctx) {
 function main () {
   const app = new Mali(PROTO_PATH, 'Reservation')
   app.use({ makeReseravtion })
-  app.start(HOSTPORT)
-  console.log(`Reservation service running @ ${HOSTPORT}`)
+  app.start(config.app.host + ":" + config.app.port)
+  console.log(`Reservation service running @` + config.app.host + ":" + config.app.port)
 }
 
 main()

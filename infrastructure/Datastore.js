@@ -2,6 +2,7 @@
 
 const MySql  = require('mysql')
 const config = require('../config.js')
+
 class Datastore{
 
   static connection(production){

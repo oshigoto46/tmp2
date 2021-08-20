@@ -1,3 +1,5 @@
+'use strict';
+
 const dotenv  = require("dotenv")
 dotenv.config(); 
 
@@ -11,6 +13,10 @@ const setConfig = {
           user: 'root',
           pass: 'P@ssw0rd'
         }
+      },
+      app : {
+        host: 'localhost',
+        port: '50051'
       }
     },
     development : {
@@ -22,7 +28,11 @@ const setConfig = {
          user: 'root',
          pass: 'P@ssw0rd'
        }
-     }
+     },
+      app : {
+        host: 'localhost',
+        port: '50051'
+      }
    }
 }
 

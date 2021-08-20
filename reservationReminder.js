@@ -1,9 +1,17 @@
 'use strict';
 
 const cron = require('node-cron');
-cron.schedule('0 */1 * * *', () => console.log('毎分実行'));
 
-function makeReseravtion (ctx) {
-
-
+function reminder(){
+  //cron.schedule('* */1 * * *', () => console.log('every hour execution'));
+  cron.schedule('* * * * *', () => console.log('every hour execution'));
 }
+
+// function makeReseravtion (ctx) {
+   
+
+// }
+
+//reminder()
+
+module.exports = reminder
