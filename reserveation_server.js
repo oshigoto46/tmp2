@@ -42,7 +42,7 @@ function main () {
   const app = new Mali(PROTO_PATH, 'Reservation')
   app.use({ makeReseravtion })
   app.start(HOSTPORT)
-  console.log(`Greeter service running @ ${HOSTPORT}`)
+  console.log(`Reservation service running @ ${HOSTPORT}`)
 }
 
 main()

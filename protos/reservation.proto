@@ -5,7 +5,7 @@ package reservation;
 // The greeting service definition.
 service Reservation {
   // Sends a greeting
-  rpc SayHello (ReservationRequest) returns (ReservationReply) {}
+  rpc MakeReseravtion (ReservationRequest) returns (ReservationReply) {}
 }
 
 // The request message containing the user's name.

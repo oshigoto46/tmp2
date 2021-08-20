@@ -7,7 +7,7 @@ const pd = pl.loadSync(PROTO_PATH)
 const reservation = grpc.loadPackageDefinition(pd).reservation
 const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.createInsecure())
 
-client.sayHello(
+client.makeReseravtion(
 
     {  reservationId   : '2' , 
        reservationDate : "20200101",
