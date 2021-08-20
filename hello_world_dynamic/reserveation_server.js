@@ -20,13 +20,14 @@ var connection = MySql.createConnection({
 
 function sayHello (ctx) {
   
-  //ctx.res = { reservationResponse: 'Hello ' + ctx.req.reservationId }
+  ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
   connection.query('SELECT * from pet;', function (err, rows, fields) {
       if (err) { 
           console.log('err: ' + err); 
           ctx.res = { reservationResponse: '401 bad request' }
       }else{
+          console.log("sql query" + JSON.stringify(rows[0]))
           ctx.res = { reservationResponse: '201 created' }
       }
   });
