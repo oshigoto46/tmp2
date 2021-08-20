@@ -1,17 +1,21 @@
 'use strict';
 
-const MySql = require('mysql')
-
+const MySql  = require('mysql')
+const config = require('../config.js')
 class Datastore{
 
-  static connection(){
+  static connection(production){
+
         return MySql.createConnection({
-            host: 'localhost',
-            port: 3306,
+            host: config.database.host,
+            port: config.database.port,
+            //user: config.database.auth.user,
+            //password:  config.database.auth.password,
+            database:  config.database.dbname,
             user: 'root',
-            password: 'P@ssw0rd',
-            database: 'yamamoto'
+            password: 'P@ssw0rd'
         });
+
   }
 }
 

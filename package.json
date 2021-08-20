@@ -16,6 +16,7 @@
     "create-grpc-error": "^0.1.0",
     "delay": "^4.3.0",
     "destroy": "^1.0.4",
+    "dotenv": "^10.0.0",
     "google-protobuf": "^3.9.1",
     "grpc": "^1.24.11",
     "grpc-caller": "^0.13.0",
