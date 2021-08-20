@@ -10,11 +10,11 @@ service Reservation {
 
 // The request message containing the user's name.
 message ReservationRequest {
-  string reservationId   = 1;
+  int32 reservationId   = 1;
   string reservationDate = 2;
-  string doctorId        = 3;
-  string clientId        = 4;
-  string reservationSlot = 5;
+  int32 doctorId        = 3;
+  int32 clientId        = 4;
+  int32 reservationSlot = 5;
 }
 
 // The response message containing the greetings

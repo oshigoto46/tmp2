@@ -9,7 +9,7 @@ const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.c
 
 client.sayHello(
 
-    {  reservationId   : '1' , 
+    {  reservationId   : '2' , 
        reservationDate : "20200101",
        doctorId        : '2',
        clientId        : '3',

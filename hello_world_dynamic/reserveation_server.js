@@ -22,7 +22,7 @@ function sayHello (ctx) {
   
   ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
-  connection.query('SELECT * from pet;', function (err, rows, fields) {
+  connection.query('insert into reservation set ?;', {"reservationId" : ctx.req.reservationId} , function (err, rows, fields) {
       if (err) { 
           console.log('err: ' + err); 
           ctx.res = { reservationResponse: '401 bad request' }
