@@ -22,12 +22,19 @@ function makeReseravtion (ctx) {
   
   ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
-  connection.query('insert into reservation set ?;', {"reservationId" : ctx.req.reservationId} , function (err, rows, fields) {
+  connection.query('insert into reservation set ?;', 
+     {
+      "reservationId"  : ctx.req.reservationId,
+      "reservationDate": ctx.req.reservationDate,
+      "doctorId"       : ctx.req.doctorId,
+      "clientId"       : ctx.req.clientId,
+      "reservationSlot": ctx.req.reservationSlot
+     } 
+      , function (err, rows, fields) {
       if (err) { 
           console.log('err: ' + err); 
           ctx.res = { reservationResponse: '401 bad request' }
       }else{
-          console.log("sql query" + JSON.stringify(rows[0]))
           ctx.res = { reservationResponse: '201 created' }
       }
   });

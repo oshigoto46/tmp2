@@ -9,7 +9,7 @@ const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.c
 
 client.makeReseravtion(
 
-    {  reservationId   : '2' , 
+    {  reservationId   : '21' , 
        reservationDate : "20200101",
        doctorId        : '2',
        clientId        : '3',
