@@ -15,13 +15,36 @@ const packageDefinition = protoLoader.loadSync(
 const reservationProto = grpc.loadPackageDefinition(packageDefinition)
  
 const client = new reservationProto.reservation.Reservation('127.0.0.1:50051', grpc.credentials.createInsecure())
+
+// client.GetReseravtions(
+//     {
+//        reservationId:21 
+//     }, 
+//     (error, response) => {
+//             if (!error) {
+//             // console.log(response)
+//                 console.log(response.reservationId) //こんにちわ ID:1太郎
+//             } else {
+//                 console.error(error)
+//             }
+//      }
+// )
+
  
-client.GetReseravtion({ reservationId:21 }, (error, response) => {
-    if (!error) {
-        console.log("hoge")
-        console.log(response)
-        console.log(response.reservationId) //こんにちわ ID:1太郎
-    } else {
-        console.error(error)
+client.MakeReservation(
+    {  reservationId   : '21' , 
+　　　　reservationDate : "20200101",
+       doctorId        : '2',
+       clientId        : '3',
+       reservationSlot : '22'
+    }, 
+    (error, response) => {
+            if (!error) {
+                console.log("hoge")
+                console.log(response)
+                //console.log(response.reservationId) //こんにちわ ID:1太郎
+            } else {
+                console.error(error)
+            }
     }
-})
+)

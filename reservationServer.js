@@ -16,7 +16,6 @@ const packageDefinition = protoLoader.loadSync(
 
 
 const reservationProto = grpc.loadPackageDefinition(packageDefinition)
-console.log(reservationProto.reservation.Reservation.service)
 const server = new grpc.Server()
 
 let dataStore = new Datastore()
@@ -26,7 +25,8 @@ server.addService(reservationProto.reservation.Reservation.service, {
         ret = await (dataStore.select('select * from reservation'))
         callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
     },
-    makeReseravtion: async(call, callback) => {
+    makeReservation: async(call, callback) => {
+        //console.log(call.request)
         ret = await (dataStore.insert(
              {
             "reservationId"  : call.req.reservationId,
@@ -36,8 +36,9 @@ server.addService(reservationProto.reservation.Reservation.service, {
             "reservationSlot": call.req.reservationSlot
            } 
         ))
-        callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+        callback(null, { reservationId: 'reservation id:'})
     }
+   
 })
 server.bind('127.0.0.1:50051', grpc.ServerCredentials.createInsecure())
 console.log('gRPC server running at http://127.0.0.1:50051')

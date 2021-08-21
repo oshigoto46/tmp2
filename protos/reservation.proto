@@ -2,33 +2,29 @@ syntax = "proto3";
 
 package reservation;
 
-// The greeting service definition.
 service Reservation {
-  // Sends a greeting
   rpc MakeReservation (ReservationRequestCommand) returns (ReservationReplyCommand) {}
+  rpc GetReseravtions (ReservationRequestQuery)   returns (ReservationReplyCommand) {}
   rpc GetReseravtion  (ReservationRequestQuery)   returns (ReservationReplyQuery) {}
 }
 
-// The request message containing the user's name.
+
 message ReservationRequestCommand {
-  int32 reservationId   = 1;
+  string reservationId   = 1;
   string reservationDate = 2;
-  int32 doctorId        = 3;
-  int32 clientId        = 4;
-  int32 reservationSlot = 5;
+  string doctorId        = 3;
+  string clientId        = 4;
+  string reservationSlot = 5;
 }
 
-// The response message containing the greetings
 message ReservationReplyCommand {
   string reservationId = 1;
 }
 
-// The request message containing the user's name.
 message ReservationRequestQuery {
   int32 reservationId   = 1;
 }
 
-// The response message containing the greetings
 message ReservationReplyQuery {
-  string reservationId = 1;
+  //string reservationId = 1;
 }
