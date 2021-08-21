@@ -1,3 +1,3 @@
-const severStart = require('./reservationServer')
+const severStart = require('./server')
 
 severStart()

@@ -12,7 +12,6 @@ const config     = require('../config')
 
 const reservation = grpc.loadPackageDefinition(pd).reservation
 const client = new reservation.Reservation(config.app.host + ":" + config.app.port, grpc.credentials.createInsecure())
-//const severStart = require('../reservationServer')
 const Server = require('../server')
 const Datastore = require('../infrastructure/Datastore')
 

@@ -10,7 +10,7 @@ const Datastore = require('./infrastructure/Datastore')
  * @return 
  */
 
-function makeReservationCommand (ctx) {
+function makeReservation (ctx) {
   
   ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
@@ -34,6 +34,6 @@ function makeReservationCommand (ctx) {
 }
 
 
-module.exports = makeReservationCommand 
+module.exports = makeReservation 
 
 // main()
