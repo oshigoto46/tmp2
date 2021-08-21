@@ -10,7 +10,7 @@ const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto')
  * Implements the SayHello RPC method.
  */
 
-function makeReseravtion (ctx) {
+function makeReservation (ctx) {
   
   ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
@@ -24,7 +24,7 @@ function makeReseravtion (ctx) {
      } 
       , function (err, rows, fields) {
       if (err) { 
-          console.log('makeReseravtion err: ' + err); 
+          console.log('makeReservation err: ' + err); 
           ctx.res = { reservationResponse: '401 bad request' }
       }else{
           ctx.res = { reservationResponse: '201 created' }
@@ -39,11 +39,11 @@ function makeReseravtion (ctx) {
  */
 // function severStart () {
 //   const app = new Mali(PROTO_PATH, 'Reservation')
-//   app.use({ makeReseravtion })
+//   app.use({ makeReservation })
 //   app.start(config.app.host + ":" + config.app.port)
 //   console.log(`Reservation service running @` + config.app.host + ":" + config.app.port)
 // }
 
-module.exports = makeReseravtion 
+module.exports = makeReservation 
 
 // main()

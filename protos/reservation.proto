@@ -5,11 +5,12 @@ package reservation;
 // The greeting service definition.
 service Reservation {
   // Sends a greeting
-  rpc MakeReseravtion (ReservationRequest) returns (ReservationReply) {}
+  rpc MakeReservation (ReservationRequestCommand) returns (ReservationReplyCommand) {}
+  rpc GetReseravtion  (ReservationRequestQuery)   returns (ReservationReplyQuery) {}
 }
 
 // The request message containing the user's name.
-message ReservationRequest {
+message ReservationRequestCommand {
   int32 reservationId   = 1;
   string reservationDate = 2;
   int32 doctorId        = 3;
@@ -18,6 +19,16 @@ message ReservationRequest {
 }
 
 // The response message containing the greetings
-message ReservationReply {
-  string reservationResponse = 1;
+message ReservationReplyCommand {
+  string reservationId = 1;
+}
+
+// The request message containing the user's name.
+message ReservationRequestQuery {
+  int32 reservationId   = 1;
+}
+
+// The response message containing the greetings
+message ReservationReplyQuery {
+ // string reservationId = 1;
 }

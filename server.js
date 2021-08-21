@@ -4,7 +4,8 @@ const path = require('path')
 
 //
 const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto')
-const makeReseravtion = require('./reservationServer')
+const makeReservation = require('./reservationServer')
+const getReseravtion = require('./getReservationQuery')
 /**
  * Starts an RPC server that receives requests for the Greeter service at the
  * sample server port
@@ -23,7 +24,8 @@ const makeReseravtion = require('./reservationServer')
          // more readings .. TODO
          // more readings .. TODO
 
-        this.app.use({ makeReseravtion })
+        this.app.use({ makeReservation })
+        this.app.use({ getReseravtion  })
      }
 
      serverStart () {

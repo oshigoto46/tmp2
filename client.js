@@ -10,7 +10,7 @@ const pd = pl.loadSync(PROTO_PATH)
 const reservation = grpc.loadPackageDefinition(pd).reservation
 const client = new reservation.Reservation(config.app.host + ":" + config.app.port, grpc.credentials.createInsecure())
 
-client.makeReseravtion(
+client.makeReservation(
 
     {  reservationId   : '21' , 
        reservationDate : "20200101",
@@ -19,7 +19,7 @@ client.makeReseravtion(
        reservationSlot : '22'
     }
     , (err, response) => {
-      console.log("makeReseravtion err:" + err)
-      console.log("makeReseravtion res:" + JSON.stringify(response))
+      console.log("makeReservation err:" + err)
+      console.log("makeReservation res:" + JSON.stringify(response))
    }
 )
