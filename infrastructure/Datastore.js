@@ -8,7 +8,7 @@ class Datastore{
   static connection(){
 
        
-        console.log("Datastoreの設定 in Datastore" + JSON.stringify(config))
+        //console.log("Datastoreの設定 in Datastore" + JSON.stringify(config))
 
         return MySql.createConnection({
             host: config.database.host,

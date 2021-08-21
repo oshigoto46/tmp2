@@ -19,7 +19,7 @@ const Datastore = require('../infrastructure/Datastore')
 describe('reservation api test', () => {
      let mysqlConnect ;
      let server ;
-     before(() => {
+     beforeAll(() => {
          console.log("======DB準備==============")
          mysqlConnect = Datastore.connection()
          mysqlConnect.query('DROP TABLE IF EXISTS reservation')
@@ -27,7 +27,7 @@ describe('reservation api test', () => {
          server = new Server()
      })
 
-     it("reservation makes a record in mysql",()=>{
+     test("reservation makes by api",()=>{
 
         server.serverStart()
 
@@ -40,26 +40,32 @@ describe('reservation api test', () => {
                reservationSlot : '22'
             }
             , (err, response) => {
-                //expect(err).to.equal(undefined);
-                console.log(err)
+                 expect(err).to.equal(null);
+                 //console.log(err)
                 //console.log(response)
             }
         )
-        // client.getReseravtion( 
-
-        //     {  reservationId   : '21' } , 
-        //         (err, response) => {
-        //            console.log(err)
-        //            //console.log(response)
-        //     }
-        // )
+       
         expect(1).to.equal(1);
 
      })
 
-    after(() => {
+     test("reservation checks by api when its done",()=>{
+          client.getReseravtion( 
+
+            {  reservationId   : '21' } , 
+                (err, response) => {
+                   //console.log(err)
+                   expect(err).to.equal(null);
+                   //console.log(response)
+            }
+           )
+        expect(1).to.equal(1);
+     })
+
+    afterAll(() => {
         console.log("======DB廃棄==============")
-        mysqlConnect.query('DROP TABLE reservation')
+        //mysqlConnect.query('DROP TABLE reservation')
         mysqlConnect.end()
         //server.serverStop()
         console.log("after")
