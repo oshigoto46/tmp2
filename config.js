@@ -1,5 +1,4 @@
 'use strict';
-
 const dotenv  = require("dotenv")
 dotenv.config(); 
 
@@ -7,7 +6,7 @@ const setConfig = {
     production : {
        database: {
         host: 'localhost',
-        dbname: 'yamamoto',
+        dbname: 'reservation_prod',
         port: 3306,
         auth: {
           user: 'root',
@@ -16,13 +15,13 @@ const setConfig = {
       },
       app : {
         host: 'localhost',
-        port: '50051'
+        port: '3000'
       }
     },
     development : {
       database: {
        host: 'localhost',
-       dbname: 'yamamoto',
+       dbname: 'reservation_dev',
        port: 3306,
        auth: {
          user: 'root',

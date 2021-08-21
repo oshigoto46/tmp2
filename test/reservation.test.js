@@ -1,27 +1,31 @@
 'use strict';
 
-
-const path = require('path')
-const pl = require('@grpc/proto-loader')
-const grpc = require('@grpc/grpc-js')
-const PROTO_PATH = path.resolve(__dirname, "../protos/reservation.proto")
-const Datastore = require('../infrastructure/Datastore')
 const expect    = require("chai").expect;
+const path = require('path')
+const pl   = require('@grpc/proto-loader')
+const grpc = require('@grpc/grpc-js')
 
-const pd = pl.loadSync(PROTO_PATH)
+const PROTO_PATH = path.resolve(__dirname, "../protos/reservation.proto")
+const pd         = pl.loadSync(PROTO_PATH)
+
+const config     = require('../config')
+
 const reservation = grpc.loadPackageDefinition(pd).reservation
-const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.createInsecure())
-
+const client = new reservation.Reservation(config.app.host + ":" + config.app.port, grpc.credentials.createInsecure())
+const severStart = require('../reservationServer')
+const Datastore = require('../infrastructure/Datastore')
 
 describe('reservation api test', () => {
      let mysqlConnect ;
      before(() => {
          mysqlConnect = Datastore.connection()
-         mysqlConnect.query('DROP TABLE IF EXISTS node_mysql_test ')
-         mysqlConnect.query('CREATE TABLE node_mysql_test (reservationId int , reservationDate date, doctorId int , clientId int , reservationSlot int)');
+         mysqlConnect.query('DROP TABLE IF EXISTS reservation')
+         mysqlConnect.query('CREATE TABLE reservation (reservationId int , reservationDate date, doctorId int , clientId int , reservationSlot int)');
      })
 
-     it("equals",()=>{
+     it("reservation makes a record in mysql",()=>{
+
+        severStart()
 
         client.makeReseravtion(
 
@@ -43,7 +47,7 @@ describe('reservation api test', () => {
      })
 
     after(() => {
-        mysqlConnect.query('DROP TABLE node_mysql_test')
+        mysqlConnect.query('DROP TABLE reservation')
         mysqlConnect.end()
         console.log("after")
     })

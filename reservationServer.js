@@ -24,7 +24,7 @@ function makeReseravtion (ctx) {
      } 
       , function (err, rows, fields) {
       if (err) { 
-          console.log('err: ' + err); 
+          console.log('makeReseravtion err: ' + err); 
           ctx.res = { reservationResponse: '401 bad request' }
       }else{
           ctx.res = { reservationResponse: '201 created' }
@@ -37,11 +37,13 @@ function makeReseravtion (ctx) {
  * Starts an RPC server that receives requests for the Greeter service at the
  * sample server port
  */
-function main () {
+function severStart () {
   const app = new Mali(PROTO_PATH, 'Reservation')
   app.use({ makeReseravtion })
   app.start(config.app.host + ":" + config.app.port)
   console.log(`Reservation service running @` + config.app.host + ":" + config.app.port)
 }
 
-main()
+module.exports = severStart 
+
+// main()

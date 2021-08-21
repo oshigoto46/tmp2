@@ -4,10 +4,11 @@ const path = require('path')
 const pl = require('@grpc/proto-loader')
 const grpc = require('@grpc/grpc-js')
 const PROTO_PATH = path.resolve(__dirname, "./protos/reservation.proto")
+const config = require('./config.js')
 
 const pd = pl.loadSync(PROTO_PATH)
 const reservation = grpc.loadPackageDefinition(pd).reservation
-const client = new reservation.Reservation("127.0.0.1:50051", grpc.credentials.createInsecure())
+const client = new reservation.Reservation(config.app.host + ":" + config.app.port, grpc.credentials.createInsecure())
 
 client.makeReseravtion(
 
@@ -18,6 +19,7 @@ client.makeReseravtion(
        reservationSlot : '22'
     }
     , (err, response) => {
-      console.log(response)
+      console.log("makeReseravtion err:" + err)
+      console.log("makeReseravtion res:" + JSON.stringify(response))
    }
 )

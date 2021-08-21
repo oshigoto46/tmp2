@@ -5,7 +5,10 @@ const config = require('../config.js')
 
 class Datastore{
 
-  static connection(production){
+  static connection(){
+
+       
+        console.log("Datastore congi" + JSON.stringify(config))
 
         return MySql.createConnection({
             host: config.database.host,
