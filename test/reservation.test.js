@@ -12,20 +12,23 @@ const config     = require('../config')
 
 const reservation = grpc.loadPackageDefinition(pd).reservation
 const client = new reservation.Reservation(config.app.host + ":" + config.app.port, grpc.credentials.createInsecure())
-const severStart = require('../reservationServer')
+//const severStart = require('../reservationServer')
+const Server = require('../server')
 const Datastore = require('../infrastructure/Datastore')
 
 describe('reservation api test', () => {
      let mysqlConnect ;
+     let server ;
      before(() => {
          mysqlConnect = Datastore.connection()
          mysqlConnect.query('DROP TABLE IF EXISTS reservation')
          mysqlConnect.query('CREATE TABLE reservation (reservationId int , reservationDate date, doctorId int , clientId int , reservationSlot int)');
+         server = new Server()
      })
 
      it("reservation makes a record in mysql",()=>{
 
-        severStart()
+        server.serverStart()
 
         client.makeReseravtion(
 
@@ -49,6 +52,7 @@ describe('reservation api test', () => {
     after(() => {
         mysqlConnect.query('DROP TABLE reservation')
         mysqlConnect.end()
+        server.serverStop()
         console.log("after")
     })
 

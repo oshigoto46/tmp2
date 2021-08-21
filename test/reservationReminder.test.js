@@ -1,35 +1,35 @@
-'use strict';
+// 'use strict';
 
-const Datastore = require('../infrastructure/Datastore')
-const expect    = require("chai").expect;
-const cron = require('node-cron');
-const sinon = require("sinon");
-const reminder = require('../reservationReminder')
+// const Datastore = require('../infrastructure/Datastore')
+// const expect    = require("chai").expect;
+// const cron = require('node-cron');
+// const sinon = require("sinon");
+// const reminder = require('../reservationReminder')
 
 
 
-describe('reservation reminder test', () => {
+// describe('reservation reminder test', () => {
 
-     before(() => {
-         console.log("before")
-      })
+//      before(() => {
+//          console.log("before")
+//       })
      
-     it("equals",()=>{
-        // const scheduleSpy = jest.spyOn(cron, 'schedule');
+//      it("equals",()=>{
+//         // const scheduleSpy = jest.spyOn(cron, 'schedule');
        
-        //  const logSpy = jest.spyOn(console, 'log');
-        //  expect(logSpy).toBeCalledWith('DO SOME DATA PROCESSING');
-        expect(1).to.equal(1);
+//         //  const logSpy = jest.spyOn(console, 'log');
+//         //  expect(logSpy).toBeCalledWith('DO SOME DATA PROCESSING');
+//         expect(1).to.equal(1);
 
-        const scheduleStub = sinon
-        .stub(cron, "schedule")
-        .yields()
-        .returns({});
+//         const scheduleStub = sinon
+//         .stub(cron, "schedule")
+//         .yields()
+//         .returns({});
 
-        reminder()
-     })
+//         reminder()
+//      })
 
-    after(() => {console.log("after")})
+//     after(() => {console.log("after")})
 
-    }
-);
+//     }
+// );

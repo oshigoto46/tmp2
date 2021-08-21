@@ -1,16 +1,16 @@
 'use strict';
 
-const path = require('path')
-const Mali = require('mali')
+
 const Datastore = require('./infrastructure/Datastore')
-const config = require('./config.js')
-const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto')
+
 
 /**
- * Implements the SayHello RPC method.
+ * makeReservationCommand RPC method.
+ * @param  rpc context
+ * @return 
  */
 
-function makeReseravtion (ctx) {
+function makeReservationCommand (ctx) {
   
   ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
@@ -33,17 +33,7 @@ function makeReseravtion (ctx) {
 
 }
 
-/**
- * Starts an RPC server that receives requests for the Greeter service at the
- * sample server port
- */
-// function severStart () {
-//   const app = new Mali(PROTO_PATH, 'Reservation')
-//   app.use({ makeReseravtion })
-//   app.start(config.app.host + ":" + config.app.port)
-//   console.log(`Reservation service running @` + config.app.host + ":" + config.app.port)
-// }
 
-module.exports = makeReseravtion 
+module.exports = makeReservationCommand 
 
 // main()
