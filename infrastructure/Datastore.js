@@ -31,8 +31,13 @@ class Datastore{
 
   async insert(values){
        try{
-            mysql.pool.query("INSERT INTO reservation VALUES (?)", values, function( err, results ) {
-          })
+          this.pool.query("INSERT INTO reservation set ? ", values, function( err, row , results ) 
+          {
+            if (err) { 
+              console.log('database error')
+            }
+          }
+          )
         }
         catch (err) {
             console.log(err)

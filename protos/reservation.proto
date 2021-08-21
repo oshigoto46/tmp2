@@ -4,7 +4,6 @@ package reservation;
 
 service Reservation {
   rpc MakeReservation (ReservationRequestCommand) returns (ReservationReplyCommand) {}
-  rpc GetReseravtions (ReservationRequestQuery)   returns (ReservationReplyCommand) {}
   rpc GetReseravtion  (ReservationRequestQuery)   returns (ReservationReplyQuery) {}
 }
 

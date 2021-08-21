@@ -40,7 +40,7 @@ client.MakeReservation(
     }, 
     (error, response) => {
             if (!error) {
-                console.log("hoge")
+                console.log("make reservation")
                 console.log(response)
                 //console.log(response.reservationId) //こんにちわ ID:1太郎
             } else {

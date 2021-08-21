@@ -29,11 +29,11 @@ server.addService(reservationProto.reservation.Reservation.service, {
         //console.log(call.request)
         ret = await (dataStore.insert(
              {
-            "reservationId"  : call.req.reservationId,
-            "reservationDate": call.req.reservationDate,
-            "doctorId"       : call.req.doctorId,
-            "clientId"       : call.req.clientId,
-            "reservationSlot": call.req.reservationSlot
+            "reservationId"  : call.request.reservationId,
+            "reservationDate": call.request.reservationDate,
+            "doctorId"       : call.request.doctorId,
+            "clientId"       : call.request.clientId,
+            "reservationSlot": call.request.reservationSlot
            } 
         ))
         callback(null, { reservationId: 'reservation id:'})
