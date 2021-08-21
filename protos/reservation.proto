@@ -30,5 +30,5 @@ message ReservationRequestQuery {
 
 // The response message containing the greetings
 message ReservationReplyQuery {
- // string reservationId = 1;
+  string reservationId = 1;
 }

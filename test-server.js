@@ -1,6 +1,6 @@
 const grpc = require('grpc')
 const protoLoader = require('@grpc/proto-loader')
-const PROTO_PATH = __dirname + '/hello.proto'
+const PROTO_PATH = __dirname + '/protos/hello.proto'
 const Datastore = require('./infrastructure/Datastore')
 
 const packageDefinition = protoLoader.loadSync(
@@ -25,8 +25,6 @@ const helloProto = grpc.loadPackageDefinition(packageDefinition)
  
 const server = new grpc.Server()
 
-
- 
 server.addService(helloProto.hello.Greeter.service, {
     sayHello: async(call, callback) => {
         ret = await (Datastore.execute('select * from reservation'))

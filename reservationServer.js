@@ -1,49 +1,44 @@
-'use strict';
-
-const path = require('path')
-const Mali = require('mali')
+const grpc = require('grpc')
+const protoLoader = require('@grpc/proto-loader')
+const PROTO_PATH = __dirname + '/protos/reservation.proto'
 const Datastore = require('./infrastructure/Datastore')
-const config = require('./config.js')
-const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto')
 
-/**
- * Implements the SayHello RPC method.
- */
+const packageDefinition = protoLoader.loadSync(
+    PROTO_PATH,
+    {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true
+    }
+)
 
-function makeReservation (ctx) {
-  
-  ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
 
-  Datastore.connection().query('insert into reservation set ?;', 
-     {
-      "reservationId"  : ctx.req.reservationId,
-      "reservationDate": ctx.req.reservationDate,
-      "doctorId"       : ctx.req.doctorId,
-      "clientId"       : ctx.req.clientId,
-      "reservationSlot": ctx.req.reservationSlot
-     } 
-      , function (err, rows, fields) {
-      if (err) { 
-          console.log('makeReservation err: ' + err); 
-          ctx.res = { reservationResponse: '401 bad request' }
-      }else{
-          ctx.res = { reservationResponse: '201 created' }
-      }
-  });
+const reservationProto = grpc.loadPackageDefinition(packageDefinition)
+console.log(reservationProto.reservation.Reservation.service)
+const server = new grpc.Server()
 
-}
-
-/**
- * Starts an RPC server that receives requests for the Greeter service at the
- * sample server port
- */
-// function severStart () {
-//   const app = new Mali(PROTO_PATH, 'Reservation')
-//   app.use({ makeReservation })
-//   app.start(config.app.host + ":" + config.app.port)
-//   console.log(`Reservation service running @` + config.app.host + ":" + config.app.port)
-// }
-
-module.exports = makeReservation 
-
-// main()
+let dataStore = new Datastore()
+ 
+server.addService(reservationProto.reservation.Reservation.service, {
+    getReseravtion: async(call, callback) => {
+        ret = await (dataStore.select('select * from reservation'))
+        callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+    },
+    makeReseravtion: async(call, callback) => {
+        ret = await (dataStore.insert(
+             {
+            "reservationId"  : call.req.reservationId,
+            "reservationDate": call.req.reservationDate,
+            "doctorId"       : call.req.doctorId,
+            "clientId"       : call.req.clientId,
+            "reservationSlot": call.req.reservationSlot
+           } 
+        ))
+        callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+    }
+})
+server.bind('127.0.0.1:50051', grpc.ServerCredentials.createInsecure())
+console.log('gRPC server running at http://127.0.0.1:50051')
+server.start()

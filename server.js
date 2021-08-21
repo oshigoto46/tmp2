@@ -1,10 +1,9 @@
-const Mali = require('mali')
 const config = require('./config.js')
-const path = require('path')
+const grpc = require('grpc')
+const protoLoader = require('@grpc/proto-loader')
 
+const 
 
-const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto') 
-// const PROTO_PATH = path.resolve(__dirname, './protos/helloworld.proto') TODO
 const makeReservation = require('./makeReservationCommand')
 const getReseravtion = require('./getReservationQuery')
 const sayHello = require('./test.js')
@@ -13,26 +12,38 @@ const sayHello = require('./test.js')
  * sample server port
  */
 
- class Server {
+const reservationpackageDefinition = protoLoader.loadSync(
+   RESERVATION_PROTO_PATH,
+   {
+       keepCase: true,
+       longs: String,
+       enums: String,
+       defaults: true,
+       oneofs: true
+   }
+)
+
+class Server {
 
 
-     constructor(){
-        // this.app = new Mali(PROTO_PATH, 'Greeter') //TODO
-        this.app = new Mali(PROTO_PATH, 'Reservation') //TODO
-        this.app.use({ makeReservation })
-     }
-
-     preReadingProto(){
-
-         // more readings .. TODO
-         // more readings .. TODO
-         // more readings .. TODO
-        //this.app.use({ makeReservation ,getReseravtion  }) TODO
-        
+     constructor(proto_path = './protos/reservation.proto'){
+         this.proto_path = __dirname +  proto_path;
+         this.server = new grpc.Server()
+         this.proto = grpc.loadPackageDefinition(
+            rotoLoader.loadSync(
+               this.proto_path,
+               {
+                   keepCase: true,
+                   longs: String,
+                   enums: String,
+                   defaults: true,
+                   oneofs: true
+               }
+         )
+       )
      }
 
      serverStart () {
-        //this.app.start(config.app.host + ":" + config.app.port)
         this.app.start('0.0.0.0:3000')
         console.log(this.app.name + ` service running @` + config.app.host + ":" + config.app.port)
       }
@@ -41,7 +52,7 @@ const sayHello = require('./test.js')
         this.app.close().then(() => console.log('server(s) shut down.'))
       }
 
- }
+}
 
  module.exports = Server
 
