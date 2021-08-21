@@ -10,9 +10,9 @@ const Datastore = require('./infrastructure/Datastore')
  * @return 
  */
 
-function makeReservation (ctx) {
+function makeReservation (ctx,callback) {
   
-  ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
+  ctx.res = { reservationId: 'XXXXX' + ctx.req.reservationId }
 
   Datastore.connection().query('insert into reservation set ?;', 
      {
@@ -27,14 +27,19 @@ function makeReservation (ctx) {
           console.log('makeReservation err: ' + err); 
           ctx.res = { reservationId: '401 bad request' }
       }else{
-          ctx.res = { reservationId: '201 created' }
+          console.log("DB" + Date.now())
+          console.log("DB問い合わせ成功")
+          ctx.res = { reservationId: '問い合わせパラメータをとりまd fdanofdaniofnaof詰め込む' + ctx.req.reservationId }
           console.log(ctx.res)
       }
+      callback(null,)
   });
+
+  
 
 }
 
-
+console.log(makeReservation)
 module.exports = makeReservation 
 
 // main()

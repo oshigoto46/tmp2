@@ -3,8 +3,8 @@ const config = require('./config.js')
 const path = require('path')
 
 
-// const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto') TODO
-const PROTO_PATH = path.resolve(__dirname, './protos/helloworld.proto')
+const PROTO_PATH = path.resolve(__dirname, './protos/reservation.proto') 
+// const PROTO_PATH = path.resolve(__dirname, './protos/helloworld.proto') TODO
 const makeReservation = require('./makeReservationCommand')
 const getReseravtion = require('./getReservationQuery')
 const sayHello = require('./test.js')
@@ -17,9 +17,9 @@ const sayHello = require('./test.js')
 
 
      constructor(){
-        this.app = new Mali(PROTO_PATH, 'Greeter') //TODO
-        console.log("sayHello" + sayHello)
-        this.app.use({ sayHello })
+        // this.app = new Mali(PROTO_PATH, 'Greeter') //TODO
+        this.app = new Mali(PROTO_PATH, 'Reservation') //TODO
+        this.app.use({ makeReservation })
      }
 
      preReadingProto(){

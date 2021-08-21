@@ -15,10 +15,10 @@ client.MakeReservation(
        clientId        : '3',
        reservationSlot : '22'
     }
-    , (err, response) => {
+    , function(err, response) {
          
          //console.log(err)
-        console.log("ここ" + JSON.stringify(response))
+        console.log("ここ" + Date.now() + JSON.stringify(response.reservationId))
     }
 )
 //console.log(JSON.stringify(reservation))

@@ -1,5 +1,5 @@
 function sayHello(ctx){
-  ctx.res = { message: 'Hello ' + ctx.req.name }
+  ctx.res = { message: 'Hello Response (in test.js)' + ctx.req.name }
 }
 
 
