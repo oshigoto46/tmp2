@@ -1,3 +1,3 @@
-const severStart = require('./server')
-
-severStart()
+const Server = require('./server')
+let   server = new Server()
+server.serverStart()

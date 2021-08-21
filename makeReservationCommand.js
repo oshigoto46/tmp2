@@ -25,9 +25,10 @@ function makeReservation (ctx) {
       , function (err, rows, fields) {
       if (err) { 
           console.log('makeReservation err: ' + err); 
-          ctx.res = { reservationResponse: '401 bad request' }
+          ctx.res = { reservationId: '401 bad request' }
       }else{
-          ctx.res = { reservationResponse: '201 created' }
+          ctx.res = { reservationId: '201 created' }
+          console.log(ctx.res)
       }
   });
 

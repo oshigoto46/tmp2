@@ -12,7 +12,7 @@ const Datastore = require('./infrastructure/Datastore')
 
 function getReservation (ctx) {
   
-  //ctx.res = { reservationResponse: 'No Query ' + ctx.req.reservationId }
+  ctx.res = { reservationId: 'No Query '}
 
   Datastore.connection().query('select * from reservation '
       , function (err, rows, fields) {
@@ -20,8 +20,8 @@ function getReservation (ctx) {
           console.log('getReseravtion err: ' + err); 
           //ctx.res = { reservationResponse: '500 Internal Server Error' }
       }else{
-          console.log('name: ' + rows[0].reservationId);
-          //ctx.res = { reservationResponse: '200 Succeed' }
+          console.log('name:！！！ ' + rows[0].reservationId);
+          ctx.res = { reservationId: rows[0].reservationId }
       }
   });
 
