@@ -8,7 +8,7 @@ const reminder = require('../reservationReminder')
 
 
 
-describe('simple test', () => {
+describe('reservation reminder test', () => {
 
      before(() => {
          console.log("before")
