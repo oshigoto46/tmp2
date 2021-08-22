@@ -66,7 +66,7 @@ describe('reservation reminder test', () => {
 
     });
 
-    it("#1 remindar create by api correctly",async()=>{
+    it("#7 remindar create by api correctly",async()=>{
         await reminder(new Date('2021/1/1 10:00')).then(
             (val) =>{
                 assert.equal(val[0].reservationId,333333)

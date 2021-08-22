@@ -1,8 +1,8 @@
 # this is for the interview of `pay.com`
 
 ## Explanation
-  - currently only API serverside (grpc) 
-  - `/reservation`
+  - API serverside (grpc) 
+  - endpoint `/reservation`
 
 ## How to use
 
@@ -10,7 +10,7 @@
 
       - please install mysql 5.x
       - create user root with password `P@ssw0rd`
-      - mysql -uroot -pP@ssw0rd` && `create database reservation_prod
+      - mysql -uroot -pP@ssw0rd && `create database reservation_prod
       - mysql -uroot -pP@ssw0rd < ./sql/seedsData.sql
 
   ## how to  start server
@@ -30,11 +30,12 @@
  ## server side test 
    
      npm test 
-    
+
+
+  ![image.png]https://user-images.githubusercontent.com/50700020/130367230-4a0b71fc-46e2-4679-bff9-0e97320597df.png
  ## mysql table overviw
 
-![image.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/1364181/9d4c4808-c960-6c49-6c2e-7d00a16bbad4.png)
-
+![image](https://user-images.githubusercontent.com/50700020/130367145-243dd589-6793-4fa1-b10b-82af44f5da77.png)
 
 ## Undone
  https://github.com/oshigoto46/paycom-interview/issues/6

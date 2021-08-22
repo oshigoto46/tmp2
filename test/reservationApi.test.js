@@ -187,7 +187,8 @@ describe('reservation api test(Creat Read)', function () {
      
 
     after(async function(){
-       // await dataStore.pool.end()
+        await dataStore.pool.end()
+        //await server.serverStop()
         console.log("after")
     });
 
