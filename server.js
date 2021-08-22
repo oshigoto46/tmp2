@@ -28,11 +28,18 @@ class Server {
          this.server.addService(this.reservationProto.reservation.Reservation.service, {
             getReseravtion: async(call, callback) => {
                let ret = await (this.dataStore.select('select * from reservation'))
-               callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+               .then(
+                 //val => console.log("受け取り側で受け取ったやで"+val)
+                 val => callback(null, { reservationId: 'reservation id:' + val[0].reservationId })
+                // callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+               )
+               .catch(
+                  e => console.log( "受け取り側でerrroやで" + e)
+               )
             },
             makeReservation: async(call, callback) => {
                //console.log(call.request)
-               ret = await (this.dataStore.insert(
+               await (this.dataStore.insert(
                      {
                   "reservationId"  : call.request.reservationId,
                   "reservationDate": call.request.reservationDate,
@@ -41,9 +48,11 @@ class Server {
                   "reservationSlot": call.request.reservationSlot
                   } 
                )).then(
-                  results =>callback(null, { success: results}) 
-               ).catch(
-                  console.log("エラー")
+                  val => console.log("受け取り側で受け取ったやで"+val)
+                 // callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+                ).catch(
+                  e => console.log( "受け取り側でerrroやで" + e)
+                  //results =>callback(null, { success: results}) 
                )
             }
         })

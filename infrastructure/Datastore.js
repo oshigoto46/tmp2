@@ -3,6 +3,7 @@
 const mysql  = require('mysql')
 const config = require('../config.js')
 const util = require('util');
+const promisify = require("util").promisify;
 
 class Datastore{
 
@@ -21,33 +22,35 @@ class Datastore{
   
   
    async select(sqlStatement){
+
         try {
-          var records = await this.pool.query(sqlStatement);
-          this.pool.end();
-          return records;
+          let records = await this.pool.query(sqlStatement)
+          console.log("sql 正常かどう")
+          return records
         } catch (err) {
+          console.log("sql 異常かどう")
           throw new Error(err)
+        } finally{
+          console.log("finallyは呼び出されている")
+          this.pool.end();
         }
   }
 
   async insert(values){
-      let ret ;
-      return new Promise((resolve, reject) =>
-      {
-        this.pool.query("INSERT INTO reservation set ? ", values, 
-          function( err, row , results) 
-              {
-                if (err) { 
-                  console.log('database error')
-                  reject()
-                }
-                else{
-                  resolve(results)
-                }
-              }
-        )
-      })
+
+      try {
+        await this.pool.query("INSERT INTO reservation set ? ", values)
+        console.log("sql 正常かどう")
+        return true
+      } catch (err) {
+        console.log("sql 異常かどう")
+        throw new Error(err)
+      } finally{
+        console.log("finallyは呼び出されている")
+        this.pool.end();
+      }
  }
+
 }
  
   
