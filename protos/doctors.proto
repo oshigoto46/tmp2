@@ -1,23 +1,20 @@
 syntax = "proto3";
 
-package reservation;
+package doctor;
 
 // The greeting service definition.
-service Reservation {
+service Doctor {
   // Sends a greeting
-  rpc MakeReservation (ReservationRequest) returns (ReservationReply) {}
+  rpc RegisterDotor (DoctorRegistrationRequest) returns (DocotrRegistrationResponse) {}
 }
 
 // The request message containing the user's name.
-message ReservationRequest {
-  int32 reservationId   = 1;
-  string reservationDate = 2;
-  int32 doctorId        = 3;
-  int32 clientId        = 4;
-  int32 reservationSlot = 5;
+message DoctorRegistrationRequest {
+  int32 doctorId        = 1;
+  int32 doctorName      = 2;
 }
 
 // The response message containing the greetings
-message ReservationReply {
-  string reservationResponse = 1;
+message DocotrRegistrationResponse {
+  int32 registrationCode = 1;
 }

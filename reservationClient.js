@@ -36,8 +36,8 @@ const client = new reservationProto.reservation.Reservation('127.0.0.1:50051', g
 client.MakeReservation(
     {  reservationId   : uuidv4() , 
 　　　　reservationDate : "20200101",
-       doctorId        : '4',
-       clientId        : '3',
+       doctorId        : '2',
+       clientId        : '2',
        reservationSlot : '5'
     }, 
     (error, response) => {

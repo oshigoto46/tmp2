@@ -24,8 +24,11 @@ message ReservationRequestCommand {
 }
 
 message ReservationReplyCommand {
+  //101 invalid request (no doctorId / no clientId)
+  //102 another error
   //201 created
   //409 confilict
+ 
   string responseCode = 1;
 }
 

@@ -2,22 +2,16 @@ syntax = "proto3";
 
 package clients;
 
-// The greeting service definition.
 service Client {
   // Sends a greeting
   rpc RegisterClient (ClientRegistrationRequest) returns (ClientRegistrationResponse) {}
 }
 
-// The request message containing the user's name.
 message ClientRegistrationRequest {
-  int32 reservationId   = 1;
-  string reservationDate = 2;
-  int32 doctorId        = 3;
-  int32 clientId        = 4;
-  int32 reservationSlot = 5;
+  int32 clientId        = 1;
+  int32 clientName      = 2;
 }
 
-// The response message containing the greetings
 message ClientRegistrationResponse {
-  string reservationResponse = 1;
+  int32 registrationCode = 1;
 }

@@ -26,13 +26,13 @@ class Datastore{
 
         try {
           const records = await this.pool.query(sqlStatement)
-          console.log(`sql select working records:${records.length} rows`)
+          //console.log(`sql select working records:${records.length} rows`)
           return records
         } catch (err) {
-          console.log("sql select is failed with some errors acrroding to DB"+err)
+          //console.log("sql select is failed with some errors acrroding to DB"+err)
           throw new Error(err)
         } finally{
-          this.pool.end();
+          //this.pool.end();
         }
   }
 
@@ -41,14 +41,14 @@ class Datastore{
       try {
         const result =  await this.pool.query("INSERT INTO reservation set ? ", values)
         console.log(result.affectedRows)
-        console.log("sql insert is working")
+        //console.log("sql insert is working")
         return result.affectedRows
       } catch (err) {
-        console.log("sql insert is failed with some errors")
+        //console.log("sql insert is failed with some errors")
         throw new Error(err)
       } finally{
-        console.log("finallyは呼び出されている")
-        this.pool.end();
+        // console.log("finallyは呼び出されている")
+        //this.pool.end();
       }
  }
 
