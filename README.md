@@ -6,8 +6,9 @@
 
 ### How to use
 
-  ### prerequiries
-      - please mysql install 
+  ## prerequiries
+
+      - please install mysql 5.x
       - create user root with password `P@ssw0rd`
       - `mysql -uroot -pP@ssw0rd` && `create database reservation_prod`
       - `mysql -uroot -pP@ssw0rd < ./sql/seedsData.sql`
