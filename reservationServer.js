@@ -35,10 +35,12 @@ server.addService(reservationProto.reservation.Reservation.service, {
             "clientId"       : call.request.clientId,
             "reservationSlot": call.request.reservationSlot
            } 
-        ))
-        callback(null, { reservationId: 'reservation id:'})
+        )).then(
+            results =>callback(null, { success: results}) 
+        ).catch(
+            console.log("エラー")
+        )
     }
-   
 })
 server.bind('127.0.0.1:50051', grpc.ServerCredentials.createInsecure())
 console.log('gRPC server running at http://127.0.0.1:50051')

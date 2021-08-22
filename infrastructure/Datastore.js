@@ -18,11 +18,12 @@ class Datastore{
     })
     this.pool.query = util.promisify(this.pool.query)
   }
-
+  
+  
    async select(sqlStatement){
         try {
           var records = await this.pool.query(sqlStatement);
-          this.pool.end();// ←これです
+          this.pool.end();
           return records;
         } catch (err) {
           throw new Error(err)
@@ -30,21 +31,24 @@ class Datastore{
   }
 
   async insert(values){
-       try{
-          this.pool.query("INSERT INTO reservation set ? ", values, function( err, row , results ) 
-          {
-            if (err) { 
-              console.log('database error')
-            }
-          }
-          )
-        }
-        catch (err) {
-            console.log(err)
-            throw new Error(err)
-        }
-  }
+      let ret ;
+      return new Promise((resolve, reject) =>
+      {
+        this.pool.query("INSERT INTO reservation set ? ", values, 
+          function( err, row , results) 
+              {
+                if (err) { 
+                  console.log('database error')
+                  reject()
+                }
+                else{
+                  resolve(results)
+                }
+              }
+        )
+      })
  }
+}
  
   
 

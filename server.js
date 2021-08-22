@@ -1,36 +1,17 @@
 const config = require('./config.js')
 const grpc = require('grpc')
 const protoLoader = require('@grpc/proto-loader')
-
-const 
-
-const makeReservation = require('./makeReservationCommand')
-const getReseravtion = require('./getReservationQuery')
-const sayHello = require('./test.js')
-/**
- * Starts an RPC server that receives requests for the Greeter service at the
- * sample server port
- */
-
-const reservationpackageDefinition = protoLoader.loadSync(
-   RESERVATION_PROTO_PATH,
-   {
-       keepCase: true,
-       longs: String,
-       enums: String,
-       defaults: true,
-       oneofs: true
-   }
-)
+const Datastore = require('./infrastructure/Datastore')
 
 class Server {
 
+     constructor(proto_path = '/protos/reservation.proto'){
 
-     constructor(proto_path = './protos/reservation.proto'){
          this.proto_path = __dirname +  proto_path;
          this.server = new grpc.Server()
-         this.proto = grpc.loadPackageDefinition(
-            rotoLoader.loadSync(
+         this.dataStore = new Datastore()
+         this.reservationProto = grpc.loadPackageDefinition(
+            protoLoader.loadSync(
                this.proto_path,
                {
                    keepCase: true,
@@ -44,12 +25,35 @@ class Server {
      }
 
      serverStart () {
-        this.app.start('0.0.0.0:3000')
-        console.log(this.app.name + ` service running @` + config.app.host + ":" + config.app.port)
+         this.server.addService(this.reservationProto.reservation.Reservation.service, {
+            getReseravtion: async(call, callback) => {
+               let ret = await (this.dataStore.select('select * from reservation'))
+               callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+            },
+            makeReservation: async(call, callback) => {
+               //console.log(call.request)
+               ret = await (this.dataStore.insert(
+                     {
+                  "reservationId"  : call.request.reservationId,
+                  "reservationDate": call.request.reservationDate,
+                  "doctorId"       : call.request.doctorId,
+                  "clientId"       : call.request.clientId,
+                  "reservationSlot": call.request.reservationSlot
+                  } 
+               )).then(
+                  results =>callback(null, { success: results}) 
+               ).catch(
+                  console.log("エラー")
+               )
+            }
+        })
+        this.server.bind('127.0.0.1:50051', grpc.ServerCredentials.createInsecure())
+        console.log('gRPC server running at http://127.0.0.1:50051')
+        this.server.start()
       }
 
       serverStop(){
-        this.app.close().then(() => console.log('server(s) shut down.'))
+        this.server.close().then(() => console.log('server(s) shut down.'))
       }
 
 }

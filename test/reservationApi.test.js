@@ -19,8 +19,7 @@ describe('reservation api test',  () => {
      let mysqlConnect ;
      let server ;
      beforeAll(() => {
-         console.log("======DB準備==============")
-         mysqlConnect = Datastore.connection()
+         
          //mysqlConnect.query('DROP TABLE IF EXISTS reservation')
          //await mysqlConnect.query('CREATE TABLE reservation (reservationId int , reservationDate date, doctorId int , clientId int , reservationSlot int)');
          mysqlConnect.query('DELETE  from reservation')
@@ -31,19 +30,18 @@ describe('reservation api test',  () => {
 
         server.serverStart()
         
-        client.MakeReservation(
-
-            {  reservationId   : '21' , 
-               reservationDate : "20200101",
-               doctorId        : '2',
-               clientId        : '3',
-               reservationSlot : '22'
-            }
-            , (err, response) => {
-                 expect(err).to.equal(null);
-                 //console.log(err)
-                //console.log(response)
-            }
+        client.GetReseravtion(
+            {
+               reservationId:21 
+            }, 
+            (error, response) => {
+                    if (!error) {
+                    // console.log(response)
+                        console.log(response.reservationId) //こんにちわ ID:1太郎
+                    } else {
+                        console.error(error)
+                    }
+             }
         )
        
         expect(1).to.equal(1);
