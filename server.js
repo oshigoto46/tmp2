@@ -90,7 +90,7 @@ class Server {
                 ).catch(
                   err => {
                      let str = "" + err
-                     console.log(err)
+                     // console.log(err)
                      if(str.indexOf("ER_DUP_ENTRY")>0){
                         // console.log("重複エラー")
                         callback(null, { responseCode: 409 ,

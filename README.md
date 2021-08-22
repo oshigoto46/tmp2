@@ -1,10 +1,10 @@
-## this is for the interview of `pay.com`
+# this is for the interview of `pay.com`
 
-### Explanation
+## Explanation
   - currently only API serverside (grpc) 
   - `/reservation`
 
-### How to use
+# How to use
 
   ## prerequiries
 
