@@ -20,6 +20,10 @@
    ```
   ## API specification
      - make reservation
+     |a  |b  |c  |
+|---|---|---|
+|1  |2  |3  |
+|4  |5  |6  |
        `201` created successfuly
        `101` invalid request (no doctorId / no clientId)
        `409` duplicated 
