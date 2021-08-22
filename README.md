@@ -19,13 +19,12 @@
       node index.js
    ```
   ## API specification
-  - make reservation
- 
+  ### make reservation
   -`201` created successfuly
   -`101` invalid request (no doctorId / no clientId)
   -`409` duplicated 
 
-  - get reservation information
+  ###get reservation information
 
   -`200`  get successfully 
   -`404`  not found 
