@@ -23,7 +23,7 @@ client.GetReseravtion(
     (error, response) => {
             if (!error) {
             // console.log(response)
-                console.log(response.reservationId) //こんにちわ ID:1太郎
+                console.log(response) //こんにちわ ID:1太郎
             } else {
                 console.error(error)
             }

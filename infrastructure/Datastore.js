@@ -19,17 +19,17 @@ class Datastore{
     })
     this.pool.query = util.promisify(this.pool.query)
   }
+
   
   
    async select(sqlStatement){
 
         try {
           const records = await this.pool.query(sqlStatement)
-          console.log(recor)
           console.log(`sql select working records:${records.length} rows`)
           return records
         } catch (err) {
-          console.log("sql select is failed with some errors acrroding to DB")
+          console.log("sql select is failed with some errors acrroding to DB"+err)
           throw new Error(err)
         } finally{
           this.pool.end();

@@ -26,22 +26,23 @@ class Server {
 
      serverStart () {
          this.server.addService(this.reservationProto.reservation.Reservation.service, {
-            getReseravtion: async(_, callback) => {
-               let ret = await (this.dataStore.select('select * from reservation'))
+            getReseravtion: async(call, callback) => {
+               //if(true){console.log(call)}
+               let ret = await (this.dataStore.select(`select * from reservation where reservationId=${call.request.reservationId}`))
                .then(
                   val => 
                   { if(val.length ===1 ) 
-                     { callback(null, { responseCode: 200 , 
+                     { return callback(null, { responseCode: 200 , 
                                         reservationId: val[0].reservationId ,
                                         status: grpc.status.INTERNAL })
                      }
                     else if(val.length === 0) 
-                     { callback(null, { responseCode: 404 , 
+                     { return callback(null, { responseCode: 404 , 
                                         reservationId: null,
                                         status: grpc.status.INTERNAL })
                      }
                     else{
-                        callback(null, { responseCode: 409 , 
+                        return callback(null, { responseCode: 409 , 
                         reservationId: null,
                         status: grpc.status.INTERNAL 
                      })
@@ -49,11 +50,13 @@ class Server {
                   }
                )
                .catch(
-                  val => callback(null, {
+                  val => {
+                    return callback(null, {
                       responseCode: 503 , 
                       reservationId: null,  
                       status: grpc.status.INTERNAL 
                   })
+               }
                )
             },
             makeReservation: async(call, callback) => {
