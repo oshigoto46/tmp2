@@ -17,7 +17,8 @@ message ReservationRequestCommand {
 }
 
 message ReservationReplyCommand {
-  string reservationId = 1;
+  string responseCode = 1;
+  string reservationId = 2;
 }
 
 message ReservationRequestQuery {
@@ -25,5 +26,11 @@ message ReservationRequestQuery {
 }
 
 message ReservationReplyQuery {
-  string reservationId = 1;
+  int32 responseCode = 1;
+  int32 reservationId = 2;
+  // 200 successful
+  // 404 not found
+  // 400 bad request
+  // 409 confilict
+  // 503 sever busy or something
 }

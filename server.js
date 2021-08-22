@@ -26,15 +26,34 @@ class Server {
 
      serverStart () {
          this.server.addService(this.reservationProto.reservation.Reservation.service, {
-            getReseravtion: async(call, callback) => {
+            getReseravtion: async(_, callback) => {
                let ret = await (this.dataStore.select('select * from reservation'))
                .then(
-                 //val => console.log("受け取り側で受け取ったやで"+val)
-                 val => callback(null, { reservationId: 'reservation id:' + val[0].reservationId })
-                // callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+                  val => 
+                  { if(val.length ===1 ) 
+                     { callback(null, { responseCode: 200 , 
+                                        reservationId: val[0].reservationId ,
+                                        status: grpc.status.INTERNAL })
+                     }
+                    else if(val.length === 0) 
+                     { callback(null, { responseCode: 404 , 
+                                        reservationId: null,
+                                        status: grpc.status.INTERNAL })
+                     }
+                    else{
+                        callback(null, { responseCode: 409 , 
+                        reservationId: null,
+                        status: grpc.status.INTERNAL 
+                     })
+                    }
+                  }
                )
                .catch(
-                  e => console.log( "受け取り側でerrroやで" + e)
+                  val => callback(null, {
+                      responseCode: 503 , 
+                      reservationId: null,  
+                      status: grpc.status.INTERNAL 
+                  })
                )
             },
             makeReservation: async(call, callback) => {

@@ -32,7 +32,7 @@ describe('reservation api test',  () => {
         
         client.GetReseravtion(
             {
-               reservationId:21 
+               reservationId:311
             }, 
             (error, response) => {
                     if (!error) {

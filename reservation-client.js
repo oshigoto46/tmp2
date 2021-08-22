@@ -18,12 +18,12 @@ const client = new reservationProto.reservation.Reservation('127.0.0.1:50051', g
 
 client.GetReseravtion(
     {
-       reservationId: 333
+       reservationId:311 
     }, 
     (error, response) => {
             if (!error) {
             // console.log(response)
-                console.log(response) //こんにちわ ID:1太郎
+                console.log(response.reservationId) //こんにちわ ID:1太郎
             } else {
                 console.error(error)
             }
