@@ -4,7 +4,7 @@
   - currently only API serverside (grpc) 
   - `/reservation`
 
-# How to use
+## How to use
 
   ## prerequiries
 
@@ -17,6 +17,12 @@
    ```node.js
       node index.js
    ```
+  
+  ## how to startup reminder
+   ```node.js
+      node reservationReminder.js
+   ```
+   - will work every single hour to remind lists on the command line 
   ## client side
    
        node reservationClient.js [get/make]
