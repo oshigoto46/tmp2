@@ -26,7 +26,9 @@
   ## client side
    
        node reservationClient.js [get/make]
-  
+       
+   - some noisy console logging came up but almost test cases are passed
+
  ## server side test 
    
      npm test 
