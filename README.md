@@ -1,7 +1,8 @@
 # this is for the interview of pay.com
 
-# definition
+# Getting started
   entrypoint is 
    `node index.js`
- 
+ - 
 # [0.2] future release
+call.request.reservationSlot 
