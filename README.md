@@ -21,6 +21,7 @@
   ## API specification
 
    ### make reservation
+   
    -`201` created successfuly
    -`101` invalid request (no doctorId / no clientId)
    -`409` duplicated 
