@@ -1,7 +1,8 @@
 # this is for the interview of `pay.com`
 
 ## Explanation
-  - API serverside (grpc) 
+  - API serverside (grpc) for making reservation of  doctor for a client  at specific time/time-slots.
+  - master data of doctor/client is required to prepare manually 
   - endpoint `/reservation`
 
 ## How to use
@@ -17,16 +18,28 @@
    ```node.js
       node index.js
    ```
-  
+  ## API specification
+     - make reservation
+       `201` created successfuly
+       `101` invalid request (no doctorId / no clientId)
+       `409` duplicated 
+     - get reservation information
+
+      `200`  get successfully 
+      `404`  not found 
+      `400`  bad request
+      `503`  server error
   ## how to startup reminder
    ```node.js
       node reservationReminder.js
    ```
    - will work every single hour to remind lists on the command line 
+
   ## client side
    
        node reservationClient.js [get/make]
- 
+ 　　please change what you want to apply by changing code itself(unfortunately its hardcoding) 
+
  ## server side test 
    
      npm test 

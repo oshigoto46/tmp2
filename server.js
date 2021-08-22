@@ -99,7 +99,7 @@ class Server {
                      }
                      else if(str.indexOf("ER_NO_REFERENCED_ROW_2")>0){
                         // console.log("重複エラー")
-                        callback(null, { responseCode: 101 ,
+                        callback(null, { responseCode: 400 ,
                            status: grpc.status.INTERNAL 
                         })
                      }

@@ -79,7 +79,7 @@ describe('reservation api test(Creat Read)', function () {
         )
      })
 
-     it("#2 101 invalid reservation(id:2 sergay makes to non-exsiting doctor ) create by api correctly",async()=>{
+     it("#2 400 invalid reservation(id:2 sergay makes to non-exsiting doctor ) create by api correctly",async()=>{
 
         await client.MakeReservation(
             {  reservationId   : "1111112", 
@@ -92,7 +92,7 @@ describe('reservation api test(Creat Read)', function () {
                     if (!error) {
                         //console.log("make reservation")
                         //console.log(response)
-                        assert.equal(response.responseCode,101)
+                        assert.equal(response.responseCode,400)
                         //console.log(response.reservationId) //こんにちわ ID:1太郎
                     } else {
                         assert(error = null)
