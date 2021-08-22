@@ -2,7 +2,8 @@
 
 ## Getting started
   entrypoint is 
-   ```node index.js
+   ```node.js
+      node index.js
    ```
  - 
 ## [0.2] future release
