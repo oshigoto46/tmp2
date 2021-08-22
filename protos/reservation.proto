@@ -9,16 +9,24 @@ service Reservation {
 
 
 message ReservationRequestCommand {
+
   string reservationId   = 1;
   string reservationDate = 2;
   string doctorId        = 3;
   string clientId        = 4;
+
+  // 8-9AM  slot1
+  // 9-10AM slot2
+  // ...
+  // 17-18  slot10
   string reservationSlot = 5;
+
 }
 
 message ReservationReplyCommand {
+  //201 created
+  //409 confilict
   string responseCode = 1;
-  string reservationId = 2;
 }
 
 message ReservationRequestQuery {
@@ -26,11 +34,12 @@ message ReservationRequestQuery {
 }
 
 message ReservationReplyQuery {
-  int32 responseCode = 1;
-  int32 reservationId = 2;
   // 200 successful
   // 404 not found
   // 400 bad request
   // 409 confilict
   // 503 sever busy or something
+  int32 responseCode = 1;
+  int32 reservationId = 2;
+  
 }

@@ -58,6 +58,12 @@ class Server {
             },
             makeReservation: async(call, callback) => {
                //console.log(call.request)
+
+               if(call.request.reservationSlot <= 1 || call.request.reservationSlot >=10){
+                 return callback(null, { responseCode: 400 ,
+                     status: grpc.status.INTERNAL })
+               }
+
                await (this.dataStore.insert(
                      {
                   "reservationId"  : call.request.reservationId,
@@ -67,8 +73,17 @@ class Server {
                   "reservationSlot": call.request.reservationSlot
                   } 
                )).then(
-                  val => console.log("受け取り側で受け取ったやで"+val)
-                 // callback(null, { reservationId: 'reservation id:' + ret[0].reservationId })
+                  val => 
+                  { if(val ===1 ) 
+                     { callback(null, { responseCode: 201 ,
+                                        status: grpc.status.INTERNAL })
+                     }
+                    else{
+                        callback(null, { responseCode: 500 ,
+                        status: grpc.status.INTERNAL 
+                     })
+                    }
+                  }
                 ).catch(
                   e => console.log( "受け取り側でerrroやで" + e)
                   //results =>callback(null, { success: results}) 

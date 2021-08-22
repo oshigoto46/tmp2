@@ -24,7 +24,8 @@ class Datastore{
    async select(sqlStatement){
 
         try {
-          let records = await this.pool.query(sqlStatement)
+          const records = await this.pool.query(sqlStatement)
+          console.log(recor)
           console.log(`sql select working records:${records.length} rows`)
           return records
         } catch (err) {
@@ -38,13 +39,15 @@ class Datastore{
   async insert(values){
 
       try {
-        await this.pool.query("INSERT INTO reservation set ? ", values)
+        const result =  await this.pool.query("INSERT INTO reservation set ? ", values)
+        console.log(result.affectedRows)
         console.log("sql insert is working")
-        return true
+        return result.affectedRows
       } catch (err) {
         console.log("sql insert is failed with some errors")
         throw new Error(err)
       } finally{
+        console.log("finallyは呼び出されている")
         this.pool.end();
       }
  }
