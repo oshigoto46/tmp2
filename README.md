@@ -19,20 +19,19 @@
       node index.js
    ```
   ## API specification
-     - make reservation
-     |a  |b  |c  |
-|---|---|---|
-|1  |2  |3  |
-|4  |5  |6  |
-       `201` created successfuly
-       `101` invalid request (no doctorId / no clientId)
-       `409` duplicated 
-     - get reservation information
+  - make reservation
+ 
+    `201` created successfuly
+    `101` invalid request (no doctorId / no clientId)
+    `409` duplicated 
+    
+  - get reservation information
 
-      `200`  get successfully 
-      `404`  not found 
-      `400`  bad request
-      `503`  server error
+    `200`  get successfully 
+    `404`  not found 
+    `400`  bad request
+    `503`  server error
+
   ## how to startup reminder
    ```node.js
       node reservationReminder.js
