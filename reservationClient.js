@@ -20,7 +20,7 @@ const client = new reservationProto.reservation.Reservation('127.0.0.1:50051', g
 function get(){
     client.GetReseravtion(
         {
-           reservationId: 333
+           reservationId: uuidv4()
         }, 
         (error, response) => {
                 if (!error) {
