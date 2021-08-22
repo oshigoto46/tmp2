@@ -19,6 +19,12 @@
       node index.js
    ```
   ## API specification
+   ### get reservation information
+
+    -`200`  get successfully 
+    -`404`  not found 
+    -`400`  bad request
+    -`503`  server error
 
    ### make reservation
 
