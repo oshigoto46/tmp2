@@ -65,22 +65,14 @@ function _2hoursBeforeSlot(date){
 async function reminder(date){
      console.log("remindar start=====")
      //console.log("time slot" + _2hoursBeforeSlot(date))
-     let rows = await (pool.query(`select * from reservation where reservationSlot=${_2hoursBeforeSlot(date)}`))
-     let ret=  Object.values(JSON.parse(JSON.stringify(rows)));
-     //console.log(ret)
-     return ret
+     let ret = await (pool.query(`select * from reservation where reservationSlot=${_2hoursBeforeSlot(date)}`))
+     console.log(ret)
 };
 
+reminder(new Date( '2021/1/1 10:00'))
 
 
+cron.schedule('* * * * *', () => console.log(reminder(new Date( '2021/1/1 10:00'))));
 
-cron.schedule('* */1 * * *', async () => 
-     {
-      await reminder(new Date()).then(
-        (val) =>{
-          console.log("reminder" + JSON.stringify(val))
-        }
-      )
-     }
-)
+console.log("here")
 module.exports = reminder
