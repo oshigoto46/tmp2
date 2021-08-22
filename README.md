@@ -34,8 +34,8 @@
 
   ![image](https://user-images.githubusercontent.com/50700020/130367230-4a0b71fc-46e2-4679-bff9-0e97320597df.png)
 
-    - some noisy console logging came up but almost test cases are passed
-    
+  - some noisy console logging came up but almost test cases are passed
+
  ## mysql table overviw
 
 ![image](https://user-images.githubusercontent.com/50700020/130367145-243dd589-6793-4fa1-b10b-82af44f5da77.png)
