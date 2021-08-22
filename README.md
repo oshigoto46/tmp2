@@ -25,6 +25,7 @@
     -201 created successfuly
     -101 invalid request (no doctorId / no clientId)
     -409 duplicated 
+    -503  server error
 
    ### get reservation information
 
