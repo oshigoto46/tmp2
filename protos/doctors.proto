@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package doctor;
+
+// The greeting service definition.
+service Doctor {
+  // Sends a greeting
+  rpc RegisterDotor (DoctorRegistrationRequest) returns (DocotrRegistrationResponse) {}
+}
+
+// The request message containing the user's name.
+message DoctorRegistrationRequest {
+  int32 doctorId        = 1;
+  int32 doctorName      = 2;
+}
+
+// The response message containing the greetings
+message DocotrRegistrationResponse {
+  int32 registrationCode = 1;
+}

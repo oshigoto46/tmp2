@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package clients;
+
+service Client {
+  // Sends a greeting
+  rpc RegisterClient (ClientRegistrationRequest) returns (ClientRegistrationResponse) {}
+}
+
+message ClientRegistrationRequest {
+  int32 clientId        = 1;
+  int32 clientName      = 2;
+}
+
+message ClientRegistrationResponse {
+  int32 registrationCode = 1;
+}

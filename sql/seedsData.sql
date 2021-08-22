@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS client;
+DROP TABLE IF EXISTS doctor;
+DROP TABLE IF EXISTS reservation;
+CREATE TABLE client(clientId varchar(255) , clientName varchar(255),primary key (clientId) );
+INSERT INTO  client (clientId,clientName) values("1","alex");
+INSERT INTO  client (clientId,clientName) values("2","sergay");
+INSERT INTO  client (clientId,clientName) values("3","petr");
+CREATE TABLE doctor(doctorId varchar(255) , doctorName varchar(255),primary key (doctorId));
+INSERT INTO  doctor (doctorId,doctorName) values("1","doctorAlex");
+INSERT INTO  doctor (doctorId,doctorName) values("2","doctorPetr");
+INSERT INTO  doctor (doctorId,doctorName) values("3","doctorSergay");
+create table reservation (reservationId varchar(255) , reservationDate varchar(255), doctorId varchar(255) , clientId varchar(255) , reservationSlot varchar(255), PRIMARY KEY( reservationDate, doctorId,reservationSlot), UNIQUE KEY(reservationId),foreign key clientIdFK(clientId) references client(clientId),foreign key doctorIdFK(doctorId) references doctor(doctorId));
