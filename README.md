@@ -16,7 +16,7 @@
 
   ## how to  start server
    ```node.js
-      node index.js
+       TARGET_ENV=production node index.js
    ```
   ## API Respsonse 
 
