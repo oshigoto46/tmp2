@@ -64,7 +64,11 @@
     "url": "https://github.com/oshigoto46/paycom-interview/issues"
   },
   "homepage": "https://github.com/oshigoto46/paycom-interview#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.3.2"
+  },
   "keywords": [
     "\"paycom",
     "interview\""

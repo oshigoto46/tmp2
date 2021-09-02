@@ -34,13 +34,11 @@ async function makeReservation(call, callback) {
         let str = "" + err;
         // console.log(err)
         if (str.indexOf("ER_DUP_ENTRY") > 0) {
-          // console.log("重複エラー")
           callback(null, {
             responseCode: 409,
             status: grpc.status.INTERNAL,
           });
         } else if (str.indexOf("ER_NO_REFERENCED_ROW_2") > 0) {
-          // console.log("重複エラー")
           callback(null, {
             responseCode: 400,
             status: grpc.status.INTERNAL,

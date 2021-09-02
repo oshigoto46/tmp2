@@ -6,31 +6,14 @@ async function getReservation(call, callback) {
     )
     .then((val) => {
       if (val.length === 1) {
-        return callback(null, {
-          responseCode: 200,
-          reservationId: val[0].reservationId,
-          status: grpc.status.INTERNAL,
-        });
+        return callback(null, response.200);
       } else if (val.length === 0) {
-        return callback(null, {
-          responseCode: 404,
-          reservationId: null,
-          status: grpc.status.INTERNAL,
-        });
+        return callback(null,response.404 );
       } else {
-        return callback(null, {
-          responseCode: 409,
-          reservationId: null,
-          status: grpc.status.INTERNAL,
-        });
-      }
-    })
+        return callback(null,response.409);
+      }})
     .catch((val) => {
-      return callback(null, {
-        responseCode: 503,
-        reservationId: null,
-        status: grpc.status.INTERNAL,
-      });
+      return callback(null,response.503 );
     });
 }
 
