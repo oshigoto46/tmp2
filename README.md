@@ -1,4 +1,4 @@
-# this is for the interview of `pay.com`
+# this is for the something
 
 ## Explanation
   - API serverside (grpc) for making reservation of  doctor for a client  at specific time/time-slots.
