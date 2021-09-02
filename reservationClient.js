@@ -20,7 +20,7 @@ const client = new reservationProto.reservation.Reservation(
 function get() {
   client.GetReseravtion(
     {
-      reservationId: uuidv4(),
+      reservationId: 1111111, // uuidv4(),
     },
     (error, response) => {
       if (!error) {
