@@ -50,7 +50,7 @@
     "ws": "^7.4.4"
   },
   "scripts": {
-    "test": "TARGET_ENV=development mocha --detectOpenHandles",
+    "test": "TARGET_ENV=development mocha --forceExit",
     "start": "node index.js",
     "lint": "eslint"
   },
